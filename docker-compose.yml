@@ -1,0 +1,31 @@
+version: '2.2'
+
+services:
+
+  interview-localstack:
+    image: localstack/localstack
+    ports:
+      - "4576:4566"
+    environment:
+      - DEFAULT_REGION=ap-southeast-1
+      - SERVICES=sqs
+      - DEBUG=1
+      - PERSISTENCE=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    depends_on: 
+      - database
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./data/localstack-data:/var/lib/localstack"
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: 4B+yBa09lobxOkdSWIsK
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+      - /etc/localtime:/etc/localtime:ro

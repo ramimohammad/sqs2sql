@@ -1,0 +1,6 @@
+queue_url="http://localhost:4576/000000000000/test-queue"
+queue_name='test-queue'
+aws_access_key_id="fakekey"
+aws_secret_access_key="fakesecret"
+region_name="ap-southeast-1"
+endpoint_url="http://localhost:4576"
